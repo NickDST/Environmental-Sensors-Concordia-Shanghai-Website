@@ -6,8 +6,10 @@ include $_SERVER["DOCUMENT_ROOT"] . $folder_nav.  "assets/.includes/dbhconnect.p
 include $_SERVER["DOCUMENT_ROOT"] . $folder_nav. "assets/.includes/login_functions.php";
 include $_SERVER["DOCUMENT_ROOT"] . $folder_nav. "assets/routes.php";
 
+
+//Testing whether or not the person is logged in or not
 if ( !isset( $_SESSION[ 'id' ] ) ) {
-	Redirect($folder_nav . '/default-operations/login');
+	Redirect($folder_nav . 'default-operations/login');
 }
 ?>
 
