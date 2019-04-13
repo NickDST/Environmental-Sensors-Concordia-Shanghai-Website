@@ -1,0 +1,169 @@
+<head>
+    <!-- Plotly.js -->
+            <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+            
+            <script src="../js/plotly-latest.min.js" ></script>
+            </head>
+            <body>
+            <!-- Plotly chart will be drawn inside this DIV -->
+            <div id="parallelDiv" style="width:100%;height:100%"></div>
+            
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/Chart.min.js"></script>
+<script src="../js/moments.js"></script>
+            <script>
+
+                    var url = "http://localhost/marchsmsdb/bdst";
+                    
+                    
+                    loadParallelChart('H429', 'H529', 'H227', 'H506', 'H306');
+                    
+                    
+                    
+                    function loadParallelChart(room_1, room_2, room_3, room_4, room_5){
+                        var json_url = url + "/graph_php_files/parallel_json_24.php?room_1=" + room_1 + "&room_2=" + room_2 + "&room_3=" + room_3 + "&room_4=" + room_4 + "&room_5=" + room_5;
+                          $.ajax({
+                              url : json_url,
+                              type : "GET",
+                              success : function(data){
+                                  console.log(data);
+                    
+                          
+                           //Distinct Location
+                           var distinctLocations = [...new Set(data.map(x => x.Location))];
+                    
+                    
+                            var distinctLocationsLength = distinctLocations.length;
+                            var large_room_data = [];
+                            var data_pack = {
+                                CO2 : [],
+                                PM25 : [],
+                                Temperature: [],
+                                Humidity: [],
+                                set_color : [],
+                                datetime: []
+                              };
+
+  var room_data = {
+
+  type: 'parcoords',
+  pad: [80,80,80,80],
+  line: {
+    showscale: true,
+    reversescale: true,
+    colorscale: 'Jet',
+    cmin: -4000,
+    cmax: -100,
+    color: data_pack.set_color
+  },
+
+  dimensions: [
+  {
+    label: 'Time (Hrs)',
+    range: [0, 24],
+    values: data_pack.datetime
+  },
+  {
+    label: 'CO2',
+    range: [0, 1100],
+    values: data_pack.CO2
+  }, {
+    label: 'PM25',
+    range: [0,15],
+    values: data_pack.PM25
+  }, {
+    label: 'Temperature',
+    range: [20, 30],
+    values: data_pack.Temperature
+  },  {
+    label: 'Humidity',
+    range: [20, 50],
+    values: data_pack.Humidity
+  }]
+};
+
+                                        var len = data.length;
+                                        for (var j = 0; j < len; j++) {
+                        
+                                        if(data[j].Location == room_1 || 
+                                        data[j].Location == room_2 || 
+                                        data[j].Location == room_3 || 
+                                        data[j].Location == room_4 || 
+                                        data[j].Location == room_5){
+                    
+                                        data_pack.CO2.push(data[j].CO2);
+                                        data_pack.PM25.push(data[j].PM25);
+                                        data_pack.Temperature.push(data[j].Temperature);
+                                        data_pack.Humidity.push(data[j].Humidity);
+
+                                        
+                                        if(data[j].Location == room_1){
+                                            data_pack.set_color.push("-700");
+                                        }
+                                        
+                                        if(data[j].Location == room_2){
+                                            data_pack.set_color.push("-2200");
+                                        }
+                                        
+                                        if(data[j].Location == room_3){
+                                            data_pack.set_color.push("-3900");
+                                        }
+
+                                        if(data[j].Location == room_4){
+                                            data_pack.set_color.push("-2500");
+                                        }
+
+                                        if(data[j].Location == room_5){
+                                            data_pack.set_color.push("-1200");
+                                        }
+
+
+
+                                       
+                                        //2019-03-15 00:01:16
+
+                                        var temp_datetime = data[j].datetime;
+                                        var hour = temp_datetime.slice(10,13);
+                                        var min = (temp_datetime.slice(14,16))/60;
+                                        var time = +hour + +min;
+                                        data_pack.datetime.push(time);
+                                        
+                             
+                                        }
+                                    }
+                      //push into the larger array
+                                large_room_data.push(room_data);
+                    
+              
+                      //Now i should have an array with number of rooms (so 3 right now)
+                      //and then within each array there is Temperature and datetime
+                      //name of each unit has to be designated by order
+                      console.log(large_room_data);
+                      //console.log(room_data);
+                      //console.log(data_pack);
+
+    var layout = {
+        // width: auto,
+        // showlegend: true
+      };
+                    
+                      Plotly.plot('parallelDiv', large_room_data, layout);
+                    
+                              },
+                              error : function(data) {
+                                  console.log("Failure to retrieve data");
+
+                              }
+                    
+                    
+                          });
+                      }
+                    </script>
+                    
+                    
+                    </html>
+                    
+                    
+                      
+                            
