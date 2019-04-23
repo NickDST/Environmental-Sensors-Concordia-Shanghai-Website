@@ -85,7 +85,7 @@
 				echo $displaying_message;
 
 				$sql = "SELECT * FROM 
-				( SELECT @row := @row +1 AS rownum, datetime, Location, Temperature, Humidity, PM25, CO2, Lux, esp_id, validity_check 
+				( SELECT @row := @row +1 AS rownum, datetime, Location, Temperature, Humidity, PM25, CO2, Lux, esp_id, validity_check, PM10, PM100, VOC, testMode 
 				FROM ( SELECT @row :=0) r, Test01 WHERE (datetime BETWEEN '$start_date' AND '$end_date'
 				AND Location = '" . $sql_room_list. "1') $co2_pm25_sql) 
 				ranked WHERE rownum % $resolution = 0";

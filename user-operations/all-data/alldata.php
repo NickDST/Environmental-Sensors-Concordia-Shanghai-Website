@@ -35,7 +35,7 @@
 						<?php
 
 
-						$sql = "SELECT * FROM Test01 ORDER BY datetime DESC";
+						$sql = "SELECT * FROM Test01 ORDER BY datetime DESC LIMIT 5000";
 						//Removing the memory limit so that the query can load larger results
 						ini_set('memory_limit', '-1');
 						$result = mysqli_query( $connection, $sql );

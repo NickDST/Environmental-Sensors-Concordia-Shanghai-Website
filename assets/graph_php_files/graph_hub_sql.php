@@ -1,5 +1,7 @@
 <?php
-include '../.includes/json_dbh.php';
+//include($_SERVER['DOCUMENT_ROOT'] . '/bdst_april/assets/.includes/json_dbh.php');
+include('../.includes/json_dbh.php');
+
 session_start();
 
 if ( isset( $_SESSION[ 'id' ] ) ) {
@@ -51,7 +53,7 @@ if(isset($_GET['resolution'])){
 	$resolution = 3;
 }
 
-
+$string = "";
 //selecting a particular day....Used in 3dScatter Functionality
 if(isset($_GET['chooseDate'])){
 	$date = $mysqli->real_escape_string($_GET['chooseDate']);

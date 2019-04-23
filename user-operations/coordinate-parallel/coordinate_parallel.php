@@ -68,6 +68,7 @@
 							
 						</tr>
 						<?php
+						$upload_hour_tolerance = 3;
 						$sql = "SELECT DISTINCT esp_id FROM Test01 WHERE datetime > '2019-3-15' ORDER BY esp_id ASC";
 
 						$result = mysqli_query( $connection, $sql );
@@ -115,14 +116,14 @@
 									}
 									
 									if ($difference_hours <= $upload_hour_tolerance){
-										;$status = "Online";
+										$status = "Online";
 										
                     $status = "<button class= 'btn btn-success' id = 'clicked' value = '$room_Value' >Online</button>";											
 									} else {
                     $status = "Offline";
                     $room_Value = $row[ 'Location' ];
 										
-										$status = "<button class= 'btn btn-primary' id = 'clicked' value = '$room_Value' >Online</button>";
+										$status = "<button class= 'btn btn-primary' id = 'clicked' value = '$room_Value' >Offline</button>";
 									}
 									
 								echo "<tr>

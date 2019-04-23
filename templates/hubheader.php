@@ -40,7 +40,7 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 </head>
 <body>
 	<!-- Left Panel -->
-	<aside id="left-panel" class="left-panel" >
+	<aside id="left-panel" class="left-panel " >
 		<nav class="navbar navbar-expand-sm navbar-default">
 			<div id="main-menu" class="main-menu collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -49,7 +49,7 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 					</li>
 					<li class="menu-title">View Data</li>
 					<!-- /.menu-title -->
-<!--
+<!-- 
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Tables</a>
 						<ul class="sub-menu children dropdown-menu">
@@ -60,9 +60,9 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 							<li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a>
 							</li>
 						</ul>
-					</li>
-					
--->
+					</li>				 -->
+
+
 					<li>
 						<a href="<?php echo $report_24hr_abs_path ?>"> <i class="menu-icon fa fa-binoculars"></i>Full 24 hr Report</a>
 					</li>
@@ -76,7 +76,7 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 						<a href="<?php echo $heatmap_abs_path ?>"> <i class="menu-icon fa fa-coffee"></i>Concordia Heatmap</a>
 					</li>
 					<li>
-						<a href="<?php echo $generate_table_abs_path ?>"> <i class="menu-icon fa fa-table"></i> Generate Tables, Custom Reports, Excel Download</a>
+						<a href="<?php echo $generate_table_abs_path ?>"> <i class="menu-icon fa fa-table"></i> Generate Tables</a>
 					</li>
 					<li>
 						<a href="<?php echo $view_all_data_abs_path ?>"> <i class="menu-icon fa fa-folder-o"></i>View All Data</a>
@@ -85,33 +85,26 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 						<a href="<?php echo $view_layout_abs_path ?>"> <i class="menu-icon fa fa-search"></i>School Layout </a>
 					</li>
 					<!--                -->
+
 					<li class="menu-title">Manage Sensors</li>
-					<li>
-						<a href="<?php echo $sensor_status_abs_path ?>"> <i class="menu-icon fa fa-caret-square-o-right"></i>View Sensor Status </a>
-					</li>
-					<li>
-						<a href="<?php echo $search_room_abs_path ?>"> <i class="menu-icon fa fa-search"></i>Search Room </a>
-					</li>
+					<li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="<?php echo $sensor_status_abs_path ?>">View Sensor Status</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo $search_room_abs_path ?>">Search Room</a></li>
+                        </ul>
+                    </li>
 
 					<!-- TODO: Restrict these functions to only admin -->
 					<li class="menu-title">Admin Actions</li>
-					<li>
-						<a href="<?php echo $manage_accounts_abs_path ?>"> <i class="menu-icon fa fa-paperclip"></i>Manage Accounts </a>
-					</li>
-					<li>
-						<a href="<?php echo $reboot_sensors_abs_path ?>"> <i class="menu-icon fa fa-toggle-on"></i>Reboot Sensors </a>
-					</li>
-
-
-
-					<li class="menu-title">Other Actions</li>
-					<!-- /.menu-title -->
 					<li class="menu-item-has-children dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Functions</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-paper-plane"></i><a href="logout.php">Logout</a>
-							</li>
-						</ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Admin Actions</a>
+                        <ul class="sub-menu children dropdown-menu">
+							<li><i class="menu-icon fa fa-line-chart"></i><a href="<?php echo $reboot_sensors_abs_path ?>">Manage Accounts</a></li>
+							<li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo $manage_accounts_abs_path ?>">Reboot Sensors</a></li>
+							<br>
+							<br>
+                        </ul>
 					</li>
 				</ul>
 			</div>

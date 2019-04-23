@@ -46,7 +46,7 @@ $start_date = $start_year . "-" . $start_month . "-" . $start_day;
 $end_date = $end_year . "-" . $end_month . "-" . $end_day;
 				
 				
-
+$sql_room_list = "";
 $location_array = array();
 $location_array = $_SESSION[ 'csv_room_list' ];
 
