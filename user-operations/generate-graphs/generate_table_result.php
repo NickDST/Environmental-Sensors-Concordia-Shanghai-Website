@@ -4,10 +4,7 @@
 	<div class="content">
 	<!-- Animated -->
 	<div class="animated fadeIn">
-
 			<?php
-
-
 			if (isset($_GET['generate_table'])){
 				
 				//real escape strings to sanitize the data
@@ -71,7 +68,7 @@
 					<br>
 
 			<?php
-
+				$sql_room_list = "";
 				$displaying_message = "<strong>Displaying values for: ";
 				foreach($location_array as $room){
 					$sql_room_list .= $room . "' AND datetime BETWEEN '$start_date' AND '$end_date' OR Location = '";

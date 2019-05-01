@@ -1,10 +1,9 @@
 <?php
 //	$Location = $_GET['location'];
-//include "includes/dbh.inc.php";
+include '../assets/.includes/dbhconnect.php';
+//http://10.0.0.25/sensor_upload_data.php?location=test&temperature=22&humidity=55&co2=55&pm25=55&pm100=
 
-include '.includes/dbhconnect.php';
-//http://10.0.0.25/sensor_upload_data.php?location=test&temperature=22&humidity=55&co2=55&pm25=55&pm100=55&pm10=55&light=55&VOC=55&esp_id=22&password=tetrahedron;
-foreach($_REQUEST as $key => $value)
+//http://localhost/bdst_april/hardware/sensor_upload_data.php?location=test&temperature=22&humidity=55&co2=55&heap=3000&pm25=55&pm100=55&pm10=55&light=55&VOC=55&esp_id=22&password=tetrahedron
 {
 	if($key == 'location') {
 		$Location = $value;
@@ -64,6 +63,7 @@ foreach($_REQUEST as $key => $value)
 
 
 //escaping the httpGET to prevent any SQL Injections
+
 	$escaped_location = mysqli_real_escape_string($connection, $Location);
 
 	$escaped_temperature = mysqli_real_escape_string($connection, $temperature);
@@ -84,12 +84,11 @@ foreach($_REQUEST as $key => $value)
 
 	$escaped_esp_id = mysqli_real_escape_string($connection, $esp_id);
 
-	$escaped_testMode = mysqli_real_escape_string($connection, $testMode);
+	//$escaped_testMode = mysqli_real_escape_string($connection, $testMode);
 
 	$escaped_password = mysqli_real_escape_string($connection, $password);
 	
 	$escaped_heap = mysqli_real_escape_string($connection, $heap);
-
 
 
 $delta_check_sql = "SELECT * FROM Test01 WHERE esp_id = '$escaped_esp_id'
@@ -127,13 +126,10 @@ if($escaped_location == "999" || $escaped_location == "" ){
     }
 }
 
-
-
 //preventing bad data from entering the database...haven't put a cap because that filter might come later
 //$escaped_co2 < 400 ||
 if($escaped_pm25 > 100 || $escaped_pm25 == 0){
     echo "Data is invalid";
-
 
 } else {
 
@@ -145,8 +141,8 @@ if ($escaped_light > 2000){
 //will uncomment later
 if($sensor_upload_password == $escaped_password){
 
-echo $sql = "INSERT INTO Test01 (Location, Temperature, Humidity, CO2, PM25, PM10, PM100, Lux, VOC, esp_id, testMode, validity_check, heap)
-VALUES ('$escaped_location', '$escaped_temperature', '$escaped_humidity', '$escaped_co2', '$escaped_pm25', '$escaped_pm10', '$escaped_pm100', '$escaped_light', '$escaped_VOC', '$escaped_esp_id', '$escaped_testMode', '$data_validity', '$escaped_heap');";
+$sql = "INSERT INTO Test01 (Location, Temperature, Humidity, CO2, PM25, PM10, PM100, Lux, VOC, esp_id, validity_check, heap)
+VALUES ('$escaped_location', '$escaped_temperature', '$escaped_humidity', '$escaped_co2', '$escaped_pm25', '$escaped_pm10', '$escaped_pm100', '$escaped_light', '$escaped_VOC', '$escaped_esp_id', '$data_validity', '$escaped_heap');";
 
 $result = mysqli_query( $connection, $sql );
 

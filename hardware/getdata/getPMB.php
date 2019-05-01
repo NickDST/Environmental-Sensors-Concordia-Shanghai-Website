@@ -1,9 +1,10 @@
 <?php
 session_start();
-include ".includes/dbhconnect.php";
-$esp_id = mysqli_real_escape_string( $connection, $_GET[ 'espId' ] );
+include "../../assets/.includes/dbhconnect.php";
+$esp_id = mysqli_real_escape_string($connection, $_GET[ 'esp' ] );
 
-$sql = "SELECT co2c FROM bdst_esp_info WHERE esp_ID = '$esp_id'";
+
+$sql = "SELECT pm25b FROM bdst_esp_info WHERE esp_ID = '$esp_id'";
 
 						$result = mysqli_query( $connection, $sql );
 
@@ -12,7 +13,7 @@ $sql = "SELECT co2c FROM bdst_esp_info WHERE esp_ID = '$esp_id'";
 						if ( $resultCheck > 0 ) {
 							while ( $row = mysqli_fetch_assoc( $result ) ) {
 
-                                echo $row[ "co2c" ];
+                                echo $row[ "pm25b" ];
 
                             }
 

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include ".includes/dbhconnect.php";
-//http://localhost/engineering_bdst/get_Location.php?esp_id=51
-$esp_id = mysqli_real_escape_string( $connection, $_GET[ 'espId' ] );
+include "../../assets/.includes/dbhconnect.php";
+$esp_id = mysqli_real_escape_string($connection, $_GET[ 'esp' ] );
+
 
 $sql = "SELECT pm25a FROM bdst_esp_info WHERE esp_ID = '$esp_id'";
 

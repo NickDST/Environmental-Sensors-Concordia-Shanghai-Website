@@ -1,7 +1,8 @@
 <?php
 session_start();
-include ".includes/dbhconnect.php";
-$esp_id = mysqli_real_escape_string( $connection, $_GET[ 'espId' ] );
+include "../../assets/.includes/dbhconnect.php";
+$esp_id = mysqli_real_escape_string($connection, $_GET[ 'esp' ] );
+
 
 $sql = "SELECT rebootStatus FROM bdst_esp_info WHERE esp_id = '$esp_id'";
 
