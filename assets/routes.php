@@ -22,7 +22,9 @@ $sensor_status_abs_path = $folder_nav. "user-operations/sensor-status/sensor_sta
 
 $search_room_abs_path = $folder_nav. "user-operations/search-room/search_room";
 
-$reboot_sensors_abs_path = $folder_nav. "admin-operations/reboot_sensors";
+$reboot_sensors_abs_path = $folder_nav. "user-operations/admin/reboot_sensors";
 
-$manage_accounts_abs_path = $folder_nav. "admin-operations/manage_accounts";
+//$manage_accounts_abs_path = $folder_nav. "user-operations/admin/manage_accounts";
+
+$reassign_names_abs_path = $folder_nav. "user-operations/admin/reassign_locations"
 ?>

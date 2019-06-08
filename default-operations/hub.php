@@ -17,6 +17,7 @@ include '../templates/hubheader.php';
 			<div class="card">
 				<div class="card-body">
 
+
 					<h3>Welcome to the Environmental Sensor Website Page</h3>
 					<br>
 					<h5>View the functions to the right to generate tables, download CSVs, view certain rooms, or view school layout.</h5>

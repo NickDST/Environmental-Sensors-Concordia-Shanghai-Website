@@ -17,6 +17,13 @@ if ( isset( $_POST ) & !empty( $_POST ) ) {
 	
 	if($logged_in != "failed"){		
     $_SESSION[ 'id' ] = $logged_in;
+
+    //TODO: Create this function
+    if(is_admin_verification($username, $connection)){
+      $_SESSION[ 'is_admin' ] = "this user is an admin";
+    } 
+
+
     Redirect('hub');
 	} elseif ($logged_in == "failed") {
     Redirect('login.php?error=Incorrect Username or Password', false);

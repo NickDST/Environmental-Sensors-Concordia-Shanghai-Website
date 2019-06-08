@@ -13,6 +13,7 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 }
 ?>
 
+
 <!doctype html>
 <head>
 	<meta charset="utf-8">
@@ -95,17 +96,19 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
                         </ul>
                     </li>
 
-					<!-- TODO: Restrict these functions to only admin -->
+				 <?php if(isset($_SESSION[ 'is_admin' ])){ ?>
 					<li class="menu-title">Admin Actions</li>
 					<li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Admin Actions</a>
                         <ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-line-chart"></i><a href="<?php echo $reboot_sensors_abs_path ?>">Manage Accounts</a></li>
-							<li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo $manage_accounts_abs_path ?>">Reboot Sensors</a></li>
+							<li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo $reboot_sensors_abs_path ?>">Reboot Sensors</a></li>
+							<li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo $reassign_names_abs_path ?>">Reassign Location Names</a></li>
 							<br>
 							<br>
-                        </ul>
+						</ul>
+						
 					</li>
+				 <?php }?>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -144,6 +147,17 @@ if ( !isset( $_SESSION[ 'id' ] ) ) {
 				</div>
 			</div>
 		</header>
+		<br>
+
+	<?php if (isset($_GET['success'])) {?>
+	<div class="alert alert-success" role="alert" style="margin-top: 0px;">
+	<?php echo $_GET['success']; ?> </div>
+    <?php }?>
+
+	<?php if (isset($_GET['error'])) {?>
+	<div class="alert alert-danger" role="alert" style="margin-top: 0px;">
+	<?php echo $_GET['error']; ?> </div>
+	<?php }?>
 		<!-- /#header -->
 		<script src="<?php echo $folder_nav; ?>js/jquery.min.js"></script>
 		<script src="<?php echo $folder_nav; ?>js/Chart.min.js"></script>

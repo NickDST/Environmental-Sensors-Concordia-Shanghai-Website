@@ -17,4 +17,17 @@ function login_user_function($username, $password, $connection){
 		return $login;
 	}
 }
+
+function is_admin_verification($username, $connection){
+	$sql = "SELECT * FROM `bdst_login_data` WHERE user = '$username' AND is_admin = '1';";
+	$result = mysqli_query( $connection, $sql );
+	$count = mysqli_num_rows( $result );
+	if ( $count == 1 ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 ?>

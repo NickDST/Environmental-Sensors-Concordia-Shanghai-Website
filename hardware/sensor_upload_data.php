@@ -104,9 +104,7 @@ if ( $delta_resultCheck > 0 ) {
 
 										$query_co2_sum += $row[ "CO2" ];
 										$loopCnt++;
-
 								}
-
 						}
 
 $prev_co2_average = $query_co2_sum / $loopCnt;
@@ -116,7 +114,6 @@ if(abs($prev_co2_average - $escaped_co2) > 600){
 } else {
 	$data_validity = "valid";
 }
-
 
 if($escaped_location == "999" || $escaped_location == "" ){
     $noRoomSql = "SELECT * FROM bdst_esp_info WHERE esp_id = '$escaped_esp_id'";
